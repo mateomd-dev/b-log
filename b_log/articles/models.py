@@ -10,3 +10,5 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
     published = models.BooleanField(default=False)
+
+    owner = models.ForeignKey('auth.User', related_name='articles', on_delete=models.CASCADE)
