@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'articles.apps.ArticlesConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 CORS_ALLOWED_ORIGINS = [
