@@ -6,15 +6,12 @@ from .models import Article, ArticleContent
 
 class ArticleSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
-    content = serializers.StringRelatedField(many=True)
     
     class Meta:
         model = Article
-        fields = ['id', 'title', 'slug', 'content', 'owner', 'summary', 'created_at', 'comments']
+        fields = ['id', 'title', 'slug', 'author', 'summary', 'created_at']
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    articles = serializers.HyperlinkedRelatedField(many=True, view_name='article-detail', read_only=True)
-
+class ArticleContentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'id', 'username', 'articles']
+        model = ArticleContent
+        fields = ['article_id', 'content']
