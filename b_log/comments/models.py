@@ -10,3 +10,6 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return '[%d] %s: %s' % (self.id, self.author, self.content)
