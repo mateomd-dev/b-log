@@ -12,6 +12,6 @@ class Article(models.Model):
     meta_desc = models.CharField(max_length=150, blank=True)
 
 class ArticleContent(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article_id = models.OneToOneField(Article, on_delete=models.CASCADE, primary_key=True)
     content = models.TextField()
 

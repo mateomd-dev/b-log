@@ -2,11 +2,11 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from .models import Article
+from .models import Article, ArticleContent
 
 class ArticleSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-    comments = serializers.StringRelatedField(many=True)
+    author = serializers.ReadOnlyField(source='author.username')
+    content = serializers.StringRelatedField(many=True)
     
     class Meta:
         model = Article
