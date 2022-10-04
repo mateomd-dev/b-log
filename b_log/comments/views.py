@@ -9,13 +9,15 @@ from comments.models import Comment
 from comments.serializers import CommentSerializer
 
 class CommentList(APIView):
-    def get(self, request, article_id, format=None):
-        comments = Comment.objects.filter(article=article_id)
+    def get(self, request, pk, format=None):
+        comments = Comment.objects.filter(article=pk)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        serializer = CommentSerializer(data=request.data)
+    def post(self, request, pk, format=None):
+        data = request.data
+        data['article'] = pk
+        serializer = CommentSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
