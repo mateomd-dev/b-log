@@ -20,8 +20,6 @@ class ArticleList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        print(request)
-        print(request.data)
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
