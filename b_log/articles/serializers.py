@@ -20,4 +20,4 @@ class ArticleSerializer(DynamicArticleSerializer):
 
     class Meta:
         model = Article
-        fields = ['title', 'author',  'summary', 'created_at']
+        fields = ['title', 'author',  'summary', 'created_at', 'content']
