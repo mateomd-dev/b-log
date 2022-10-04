@@ -9,8 +9,8 @@ from comments.models import Comment
 from comments.serializers import CommentSerializer
 
 class CommentList(APIView):
-    def get(self, request, format=None):
-        comments = Comment.objects.all()
+    def get(self, request, article_id, format=None):
+        comments = Comment.objects.filter(article=article_id)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 

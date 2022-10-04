@@ -16,7 +16,12 @@ from articles.permissions import IsOwnerOrReadOnly
 class ArticleList(APIView):
     def get(self, request, format=None):
         articles = Article.objects.all()
-        serializer = ArticleSerializer(articles, many=True, fields=('id', 'title', 'author', 'summary', 'created_at'))
+        serializer = ArticleSerializer(articles, many=True, fields=('id', 
+                                                                    'title', 
+                                                                    'author', 
+                                                                    'summary', 
+                                                                    'created_at',
+                                                                    ))
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -35,7 +40,13 @@ class ArticleDetail(APIView):
 
     def get(self, request, pk, format=None):
         article = self.get_object(pk)
-        serializer = ArticleSerializer(article, fields=('id', 'title', 'author', 'summary', 'created_at', 'content'))
+        serializer = ArticleSerializer(article, fields=('id', 
+                                                        'title', 
+                                                        'author', 
+                                                        'summary', 
+                                                        'created_at', 
+                                                        'content',
+                                                        ))
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
