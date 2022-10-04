@@ -19,6 +19,15 @@ class ArticleList(APIView):
         serializer = ArticleSerializer(articles, many=True, fields=('title', 'author', 'summary', 'created_at'))
         return Response(serializer.data)
 
+    def post(self, request, format=None):
+        print(request)
+        print(request.data)
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class ArticleDetail(APIView):
     def get_object(self, pk):
         try:
@@ -38,3 +47,8 @@ class ArticleDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        article = self.get_object(pk)
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
