@@ -32,7 +32,7 @@ class CommentDetail(APIView):
 
     def get(self, request, pk, format=None):
         comment = self.get_object(pk)
-        serializer = CommentSerializer(comment, data=request.data)
+        serializer = CommentSerializer(comment)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
