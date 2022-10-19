@@ -19,6 +19,6 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('articles.urls')), 
-    path('api/v1/', include('djoser.urls')),
-    path('api/v1/', include('djoser.urls.authtoken'))
+    path('api/v1/auth/', include('auth.urls')),
+    path('api/v1/accounts/', include('allauth.urls'), name='socialaccount_signup'),
 ]

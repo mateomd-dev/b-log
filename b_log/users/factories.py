@@ -1,9 +1,9 @@
-from django.contrib.auth.models import User 
+from .models import User
 
 import factory
 
 class UserFactory(factory.django.DjangoModelFactory):
-    username = factory.Faker("email")
+    username = factory.Faker("first_name")
     password = factory.Faker("password")
     email = factory.Faker("email")
 

@@ -1,7 +1,7 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 from articles.models import Article
+from users.models import User
 
 class Comment(models.Model):
     author = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)

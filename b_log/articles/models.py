@@ -1,8 +1,9 @@
 from django.db import models
+from users.models import User
 
 class Article(models.Model):
     title = models.CharField(max_length=255, unique=True)
-    author = models.ForeignKey('auth.User', related_name='articles', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='articles', on_delete=models.CASCADE)
     summary = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
